@@ -1,0 +1,15 @@
+podman run -it --rm --name some-postgres -v C:\Users\Clay\desktop\repos\gwordle\gwordle-db:/scripts -v postgres-vol:/var/lib/postgresql/data -e POSTGRES_PASSWORD=test docker.io/postgres
+
+
+podman exec -it some-postgres /bin/bash
+
+psql -U postgres -d postgres -a -f solutions.sql
+
+psql -U admin -d postgresdb
+
+ > to query db remoteley
+PGPASSWORD=test psql -h postgres.default.svc.cluster.local -p 5432 -U admin postgresdb -c "select * from solutions"
+
+  POSTGRES_DB: postgresdb
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: test
