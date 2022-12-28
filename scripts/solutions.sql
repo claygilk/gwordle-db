@@ -1,13 +1,14 @@
 DROP TABLE IF EXISTS solutions;
 
 CREATE TABLE solutions (
-	word VARCHAR ( 50 ) UNIQUE NOT NULL PRIMARY KEY,
-	wasUsed BOOLEAN NOT NULL
+    id BIGINT UNIQUE PRIMARY KEY NOT NULL,
+	word VARCHAR ( 50 ) UNIQUE NOT NULL,
+	was_used BOOLEAN NOT NULL
 );
 
 INSERT INTO 
-    solutions (word, wasUsed)
+    solutions (id, word, was_used)
 VALUES
-    ('audio','false'),
-    ('rogue','true'),
-    ('ninja','false');
+    (1, 'audio','false'),
+    (2, 'rogue','true'),
+    (3, 'ninja','false');

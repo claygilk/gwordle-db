@@ -8,7 +8,8 @@ podman run -it --rm --name postgres \
 podman exec -it some-postgres /bin/bash
 
 psql -U postgres -d postgres -a -f /scripts/solutions.sql
-
+psql -U postgres -d postgres -h localhost -a -f solutions.sql
+psql -U postgres -d postgres -h localhost
 psql -U admin -d postgresdb
 
  > to query db remoteley
