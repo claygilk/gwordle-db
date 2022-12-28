@@ -1,9 +1,13 @@
-podman run -it --rm --name some-postgres -v C:\Users\Clay\desktop\repos\gwordle\gwordle-db:/scripts -v postgres-vol:/var/lib/postgresql/data -e POSTGRES_PASSWORD=test docker.io/postgres
+podman run -it --rm --name postgres \
+-p 5432:5432 \
+-v /home/claygilk/repos/gwordle/gwordle-db/data:/var/lib/postgresql/data \
+-v /home/claygilk/repos/gwordle/gwordle-db/scripts:/scripts \
+-e POSTGRES_PASSWORD=test postgres:latest
 
 
 podman exec -it some-postgres /bin/bash
 
-psql -U postgres -d postgres -a -f solutions.sql
+psql -U postgres -d postgres -a -f /scripts/solutions.sql
 
 psql -U admin -d postgresdb
 
