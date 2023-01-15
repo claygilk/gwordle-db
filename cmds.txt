@@ -1,4 +1,4 @@
-podman run -it --rm --name postgres \
+podman run -d --name postgres \
 -p 5432:5432 \
 -v /home/claygilk/repos/gwordle/gwordle-db/data:/var/lib/postgresql/data \
 -v /home/claygilk/repos/gwordle/gwordle-db/scripts:/scripts \
@@ -8,8 +8,9 @@ podman run -it --rm --name postgres \
 podman exec -it some-postgres /bin/bash
 
 psql -U postgres -d postgres -a -f /scripts/solutions.sql
-psql -U postgres -d postgres -h localhost -a -f solutions.sql
+psql -U postgres -d postgres -h localhost -a -f ./scripts/solutions.sql
 psql -U postgres -d postgres -h localhost
+psql -U postgres -d postgres -h http://gwordle.10.0.0.26.nip.io:8080/db
 psql -U admin -d postgresdb
 
  > to query db remoteley
@@ -18,3 +19,6 @@ PGPASSWORD=test psql -h postgres.default.svc.cluster.local -p 5432 -U admin post
   POSTGRES_DB: postgresdb
   POSTGRES_USER: admin
   POSTGRES_PASSWORD: test
+
+
+curl http://localhost:8081/api/v1/solutions/today
