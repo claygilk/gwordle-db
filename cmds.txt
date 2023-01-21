@@ -22,3 +22,6 @@ PGPASSWORD=test psql -h postgres.default.svc.cluster.local -p 5432 -U admin post
 
 
 curl http://localhost:8081/api/v1/solutions/today
+
+curl -X POST -H "Content-Type: application/json" -d @test_user.json http://localhost:8081/user
+
